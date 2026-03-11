@@ -21,7 +21,7 @@ class TestFormatShape:
         assert "CataPult" in text
         assert "Top catalysts" in text
         assert "Sortable fields" in text
-        assert "→ catapult_get" in text
+        assert "→ get" in text
 
 
 class TestFormatSearch:

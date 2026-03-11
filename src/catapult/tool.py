@@ -1,4 +1,4 @@
-"""catapult_get implementation — formats query results as markdown strings."""
+"""get implementation — formats query results as markdown strings."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ def _get_session():
     return _SessionFactory()
 
 
-def catapult_get(
+def get(
     id: str = "",
     query: str = "",
     catalyst: str = "",
@@ -109,7 +109,7 @@ def _format_publication(data: dict[str, Any]) -> str:
 
     if total > PAGE_SIZE:
         lines.append("")
-        lines.append(f'→ catapult_get(id="{data["id"]}", page=2) for next {PAGE_SIZE}')
+        lines.append(f'→ get(id="{data["id"]}", page=2) for next {PAGE_SIZE}')
 
     return "\n".join(lines)
 
@@ -161,11 +161,11 @@ def _format_shape(data: dict[str, Any]) -> str:
     lines.append("### Sortable fields")
     lines.append("energy, barrier, catalyst, facet")
     lines.append("")
-    lines.append('→ catapult_get(catalyst="Pd") to browse palladium reactions')
+    lines.append('→ get(catalyst="Pd") to browse palladium reactions')
     lines.append(
-        '→ catapult_get(reactants="CO", catalyst="Pd,Pt,Cu", facet="111") to compare metals'
+        '→ get(reactants="CO", catalyst="Pd,Pt,Cu", facet="111") to compare metals'
     )
-    lines.append('→ catapult_get(query="oxygen evolution") for free-text search')
+    lines.append('→ get(query="oxygen evolution") for free-text search')
 
     return "\n".join(lines)
 
@@ -215,10 +215,10 @@ def _format_search(data: dict[str, Any], catalyst: str = "") -> str:
     # Hints
     lines.append("")
     if end < total:
-        lines.append(f"→ catapult_get(..., page={page + 1}) for next {PAGE_SIZE}")
+        lines.append(f"→ get(..., page={page + 1}) for next {PAGE_SIZE}")
     if data["results"] and data["results"][0].get("doi"):
         doi = data["results"][0]["doi"]
-        lines.append(f'→ catapult_get(id="doi:{doi}") for full pub details')
+        lines.append(f'→ get(id="doi:{doi}") for full pub details')
 
     return "\n".join(lines)
 
@@ -250,7 +250,7 @@ def _format_comparison(data: dict[str, Any], catalyst: str) -> str:
     cats = catalyst.split(",")
     if cats:
         lines.append(
-            f'→ catapult_get(catalyst="{cats[0].strip()}") for all {cats[0].strip()} reactions'
+            f'→ get(catalyst="{cats[0].strip()}") for all {cats[0].strip()} reactions'
         )
 
     return "\n".join(lines)

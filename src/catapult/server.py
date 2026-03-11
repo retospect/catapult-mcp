@@ -1,4 +1,4 @@
-"""MCP server for CataPult — one tool: catapult_get.
+"""MCP server for CataPult — one tool: get.
 
 Queries heterogeneous catalysis databases (Catalysis-Hub, Materials Project).
 All data is local (Postgres or SQLite). Run ``chemdb sync catapult`` first.
@@ -14,7 +14,7 @@ mcp = FastMCP("catapult")
 
 
 @mcp.tool()
-def catapult_get(
+def get(
     id: str = "",
     query: str = "",
     catalyst: str = "",
@@ -48,7 +48,7 @@ def catapult_get(
     Any filter → search with results + shape on page 1.
     Multi-catalyst → comparison table (best per catalyst).
     """
-    return tool.catapult_get(
+    return tool.get(
         id=id,
         query=query,
         catalyst=catalyst,
