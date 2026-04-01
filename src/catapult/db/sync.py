@@ -12,6 +12,7 @@ from datetime import datetime
 
 from chemdb.config import ChemdbConfig
 from chemdb.db import ensure_schema, make_engine, make_session
+
 from catapult.db.schema import SCHEMA, Base, Reaction, SyncLog
 
 log = logging.getLogger(__name__)
@@ -53,6 +54,7 @@ class CatapultSyncer:
         Uses keyset pagination: id > last_id, ordered by id.
         """
         import base64
+
         import httpx
 
         log.info("Syncing from Catalysis-Hub...")
